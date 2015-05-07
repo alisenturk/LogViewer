@@ -1,0 +1,110 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/layout/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Hata Logları Arama</ui:define>
+    <ui:define name="content">
+        <f:view id="searchCriteriaView">
+            <h:form id="searchForm">
+                <p:growl id="growl"></p:growl>
+                <p:fieldset legend="Arama Kriterleri">
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="Proje"></h:outputText>
+                            </p:column>
+                            <p:column>                                  
+                                <p:selectOneMenu id="edtStatus" value="#{errorLog.instance.project}" 
+                                                   requiredMessage="Seçiniz">
+                                    <f:selectItems value="#{enums.projectSelect}"></f:selectItems>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="Tarih Aralığı"></h:outputText>
+                            </p:column>
+                            <p:column> 
+                                <p:calendar id="beginDate" value="#{errorLog.beginDate}" pattern="dd/MM/yyyy HH:mm:ss" mask="true"></p:calendar>
+                                <h:outputText value=" - "></h:outputText>
+                                <p:calendar id="endDate" value="#{errorLog.endDate}" pattern="dd/MM/yyyy HH:mm:ss" mask="true"></p:calendar>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="File Name"></h:outputText>
+                            </p:column>
+                            <p:column> 
+                                <p:inputText value="#{errorLog.instance.fileName}" style="width:300px;"></p:inputText>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="Class Name"></h:outputText>
+                            </p:column>
+                            <p:column> 
+                                <p:inputText value="#{errorLog.instance.className}" style="width:300px;"></p:inputText>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="Hata Mesajı"></h:outputText>
+                            </p:column>
+                            <p:column colspan="3"> 
+                                <p:inputText value="#{errorLog.instance.errorMessage}" style="width:600px;"></p:inputText>
+                            </p:column>
+                            
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="4">
+                                <p:commandButton value="Ara" action="#{errorLog.searchErrorLog()}" 
+                                                 update="errorLogTable"></p:commandButton>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                    
+                </p:fieldset>
+                <p:dataTable id="errorLogTable" value="#{errorLog.errorLogs}" var="err"
+                            rows="20"
+                            paginator="true"
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15,20,30,40,50,100">
+                   <f:facet name="header">Hata Listesi</f:facet>
+                   <p:column headerText="Proje"><h:outputText value="#{err.project}"></h:outputText></p:column>
+                   <p:column headerText="Tarih"><h:outputText value="#{err.errorDate}"></h:outputText> </p:column>
+                   <p:column headerText="Saat"><h:outputText value="#{err.errorTime}"></h:outputText> </p:column>
+                   <p:column headerText="Class Name"><h:outputText value="#{err.className}"></h:outputText> </p:column>
+                   <p:column headerText="File Name"><h:outputText value="#{err.fileName}"></h:outputText> </p:column>
+                   <p:column headerText="Method Name"><h:outputText value="#{err.methodName}"></h:outputText> </p:column>
+                   <p:column headerText="Line Number"><h:outputText value="#{err.lineNumber}"></h:outputText> </p:column>
+                   <p:column headerText="User Name"><h:outputText value="#{err.userName}"></h:outputText> </p:column>
+                   <p:column >
+                       <h:outputText value="#{err.errorMessage}"></h:outputText>
+                   </p:column>
+                   <p:column >
+                       <p:commandButton value="Ek Bilgi" 
+                                        update=":formDisp2:displayErrorInfo"
+                                        oncomplete="PF('dlgErrorInfo').show()"  icon="ui-icon-search"
+                                        rendered="#{err.extraInfo ne null}">
+                           <f:setPropertyActionListener value="#{err}" target="#{errorLog.selected}" />
+                       </p:commandButton>
+                   </p:column>
+               </p:dataTable>
+            </h:form>
+            <p:dialog modal="true" resizable="false" header="Hata Mesajı" widgetVar="dlgErrorMsg" showEffect="fold">
+                <h:form id="formDisp1">
+                    <p:panelGrid id="displayErrorMessage" columns="1" columnClasses="value">                      
+                        <h:outputText value="#{errorLog.selected.errorMessage}"></h:outputText>
+                    </p:panelGrid>
+                </h:form>
+            </p:dialog>
+            <p:dialog modal="true" resizable="false" header="Ekstra Bilgi" widgetVar="dlgErrorInfo" showEffect="fold">
+                <h:form id="formDisp2">
+                    <p:panelGrid id="displayErrorInfo" columns="1" columnClasses="value">
+                        <h:outputText value="#{errorLog.selected.extraInfo}"></h:outputText>
+                    </p:panelGrid>
+                </h:form>
+            </p:dialog>
+        </f:view>
+              
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+
+       
+
+        <h:outputStylesheet name="./css/bootstrap.css"/>
+        <h:outputStylesheet name="./css/font-awesome.css"/>
+        <h:outputStylesheet name="./css/custom.css"/>
+        <!-- GOOGLE FONTS-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        
+        <title><ui:insert name="title">Altar LogViewer</ui:insert></title>
+       
+    </h:head>
+
+    <h:body>
+
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">                   
+                    <a class="navbar-brand" href="index.html" style="font-size:20px !important;">Altar LogViewer</a> 
+                </div>
+                <div style="color: white;padding: 15px 50px 5px 50px;float: right;font-size: 16px;"> &nbsp; </div>
+            </nav>   
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li class="text-center">
+                            <img src="/LogViewer/resources/img/grasshopper-cute.png" class="user-image img-responsive"/>                                                        
+                        </li>
+                        <li>
+                            <a  href="/LogViewer/index.xhtml"><i class="fa fa-dashboard fa-3x"></i>Ana Sayfa</a>
+                        </li>
+                         <li>
+                            <a  href="/LogViewer/errorLogView.xhtml"><i class="fa fa-edit fa-3x"></i>Hata Logları</a>
+                        </li>	
+                        <li>
+                            <a  href="/LogViewer/sirenaLogView.xhtml"><i class="fa fa-desktop fa-3x"></i>Sirena Logları</a>
+                        </li>
+                       
+                    </ul>
+
+                </div>
+
+            </nav>  
+            <!-- /. NAV SIDE  -->
+            <div id="page-wrapper" >
+                <div id="page-inner">
+                    <div class="row">
+                        <div class="col-md-12" style="font-size:12px !important;">
+                            <h2><ui:insert name="title"></ui:insert></h2>   
+                            <ui:insert name="content">Content</ui:insert>    
+                        </div>
+                    </div>
+                    <!-- /. ROW  -->
+                    <hr />
+
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+
+        <p:dialog header="Basic Dialog" widgetVar="dlg" modal="true">
+            <h:outputText value="Resistance to PrimeFaces is futile!" />
+        </p:dialog>
+
+        
+
+    </h:body>
+
+</html>

@@ -1,0 +1,89 @@
+
+#top {
+    position: relative;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    padding: 5px;
+}
+
+.left_content {
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  font-weight : bold;
+  text-decoration : underline;
+}
+.navbar-inverse {
+    background-color: #222;
+    border-color: #080808;
+}
+.navbar-fixed-top {
+    border-width: 0 0 1px;
+    top: 0;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-radius: 0;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1030;
+}
+.navbar {
+    border-radius: 4px;
+}
+.navbar {
+    border: 1px solid transparent;
+    
+    min-height: 50px;
+    position: relative;
+}
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: -15px;
+}
+.navbar-inverse .navbar-brand {
+    color: #9d9d9d;
+}
+.navbar-brand {
+    float: left;
+    font-size: 18px;
+    height: 50px;
+    line-height: 20px;
+    padding: 15px;
+}
+
